@@ -1,8 +1,6 @@
 <template lang="pug">
 	.input-group.date
-		input.form-control(type="text", v-model="value", :autocomplete="schema.autocomplete", :disabled="disabled", :placeholder="schema.placeholder", :readonly="schema.readonly", :name="schema.inputName", :id="getFieldID(schema)")
-		span.input-group-addon
-			span.glyphicon.glyphicon-calendar
+		el-date-picker(type="date", v-model="value", :autocomplete="schema.autocomplete", :disabled="disabled", :placeholder="schema.placeholder", :readonly="schema.readonly", :name="schema.inputName", :id="getFieldID(schema)")
 </template>
 
 <script>
@@ -10,6 +8,10 @@
 import abstractField from "../abstractField";
 import { defaults } from "lodash";
 import dateFieldHelper from "../../utils/dateFieldHelper";
+
+import Vue from 'vue';
+import { DatePicker } from 'element-ui';
+Vue.use(DatePicker);
 
 let inputFormat = "YYYY-MM-DD HH:mm:ss";
 
