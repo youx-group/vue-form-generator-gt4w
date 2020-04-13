@@ -1,9 +1,13 @@
 <template lang="pug">
-	input(:id="getFieldID(schema)", type="checkbox", v-model="value", :autocomplete="schema.autocomplete", :disabled="disabled", :name="schema.inputName", :class="schema.fieldClasses", :required="schema.required", v-attributes="'input'")
+	el-checkbox(:id="getFieldID(schema)", type="checkbox", v-model="value", :autocomplete="schema.autocomplete", :disabled="disabled", :name="schema.inputName", :class="schema.fieldClasses", :required="schema.required", v-attributes="'input'")
 </template>
 
 <script>
 import abstractField from "../abstractField";
+
+import Vue from 'vue';
+import { Checkbox } from 'element-ui';
+Vue.use(Checkbox);
 
 export default {
 	mixins: [abstractField]
