@@ -35,6 +35,14 @@ let rules = [
 		test: /\.(ttf|eot)$/,
 		loader: "url-loader",
 		include: [path.resolve("src"), path.resolve("dev")]
+	},
+	{
+		test: /\.css$/,
+		loader: 'style-loader!css-loader'
+	},
+	{
+		test: /\.(eot|svg|ttf|woff|woff2)(\?\S*)?$/,
+		loader: 'file-loader'
 	}
 ];
 
