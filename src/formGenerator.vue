@@ -1,8 +1,10 @@
 <template lang="pug">
 div.vue-form-generator(v-if='schema != null')
 	fieldset(v-if="schema.fields", :is='tag')
-		template(v-for='field in fields')
-			form-group(v-if='fieldVisible(field)', :vfg="vfg", :field="field", :errors="errors", :model="model", :options="options", @validated="onFieldValidated", @model-updated="onModelUpdated")
+		div.flex
+			template(v-for='(field, index) in fields')
+				el-col(:span="schema.grid.columns[index]", :style="style(schema.grid.gutter)")
+					form-group(v-if='fieldVisible(field)', :vfg="vfg", :field="field", :errors="errors", :model="model", :options="options", @validated="onFieldValidated", @model-updated="onModelUpdated")
 
 	template(v-for='group in groups')
 		fieldset(:is='tag', :class='getFieldRowClasses(group)')
@@ -85,7 +87,7 @@ export default {
 			}
 
 			return res;
-		}
+		},
 	},
 
 	watch: {
@@ -122,6 +124,10 @@ export default {
 	},
 
 	methods: {
+		style (gutter) {
+			return `padding-right: ${gutter}px`;
+		},
+
 		// Get visible prop of field
 		fieldVisible(field) {
 			if (isFunction(field.visible)) return field.visible.call(this, this.model, field, this);
@@ -212,6 +218,12 @@ export default {
 .vue-form-generator {
 	* {
 		box-sizing: border-box;
+	}
+
+	.flex {
+		display: flex;
+		justify-content: flex-start;
+		flex-wrap: wrap;
 	}
 
 	.form-control {
