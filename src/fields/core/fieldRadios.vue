@@ -1,7 +1,7 @@
 <template lang="pug">
 	.radio-list(:disabled="disabled", v-attributes="'wrapper'")
 		label(v-for="item in items", :class="getItemCssClasses(item)", v-attributes="'label'")
-			input(:id="getFieldID(schema, true)", type="radio", :disabled="isItemDisabled(item)", :name="id", @click="onSelection(item)", :value="getItemValue(item)", :checked="isItemChecked(item)", :class="schema.fieldClasses", :required="schema.required", v-attributes="'input'")
+			el-radio(:id="getFieldID(schema, true)", type="radio", :label="getItemName(item)" :disabled="isItemDisabled(item)", :name="id", @click="onSelection(item)", :value="getItemValue(item)", :checked="isItemChecked(item)", :class="schema.fieldClasses", :required="schema.required", v-attributes="'input'")
 			| {{ getItemName(item) }}
 
 </template>
@@ -9,6 +9,10 @@
 <script>
 import { isObject, isFunction, get as objGet } from "lodash";
 import abstractField from "../abstractField";
+
+import Vue from 'vue';
+import { Radio } from 'element-ui';
+Vue.use(Radio);
 
 export default {
 	mixins: [abstractField],
