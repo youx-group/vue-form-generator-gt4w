@@ -3,14 +3,16 @@ div.vue-form-generator(v-if='schema != null')
 	fieldset(v-if="schema.fields", :is='tag')
 		div.flex
 			template(v-for='(field, index) in fields')
-				el-col(:span="schema.grid.columns[index]", :style="style(schema.grid.gutter)")
+				el-col(:span="field.column", :style="style(field.gutter)")
 					form-group(v-if='fieldVisible(field)', :vfg="vfg", :field="field", :errors="errors", :model="model", :options="options", @validated="onFieldValidated", @model-updated="onModelUpdated")
 
 	template(v-for='group in groups')
 		fieldset(:is='tag', :class='getFieldRowClasses(group)')
 			legend(v-if='group.legend') {{ group.legend }}
-			template(v-for='field in group.fields')
-				form-group(v-if='fieldVisible(field)', :vfg="vfg", :field="field", :errors="errors", :model="model", :options="options", @validated="onFieldValidated", @model-updated="onModelUpdated")
+			div.flex
+				template(v-for='field in group.fields')
+					el-col(:span="field.column", :style="style(field.gutter)")
+						form-group(v-if='fieldVisible(field)', :vfg="vfg", :field="field", :errors="errors", :model="model", :options="options", @validated="onFieldValidated", @model-updated="onModelUpdated")
 </template>
 
 <script>
