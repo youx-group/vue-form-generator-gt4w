@@ -3,7 +3,7 @@ div.vue-form-generator(v-if='schema != null')
 	fieldset(v-if="schema.fields", :is='tag')
 		div.flex
 			template(v-for='(field, index) in fields')
-				el-col(:span="field.column", :style="style(field.gutter)")
+				el-col(:span="field.column ? field.column : 12", :style="style(field)")
 					form-group(v-if='fieldVisible(field)', :vfg="vfg", :field="field", :errors="errors", :model="model", :options="options", @validated="onFieldValidated", @model-updated="onModelUpdated")
 
 	template(v-for='group in groups')
@@ -126,8 +126,8 @@ export default {
 	},
 
 	methods: {
-		style (gutter) {
-			return `padding-right: ${gutter}px`;
+		style (field) {
+			return field.gutter ? `padding-right: ${field.gutter}px` : "padding-right: 40px";
 		},
 
 		// Get visible prop of field
