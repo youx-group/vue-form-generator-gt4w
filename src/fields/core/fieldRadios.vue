@@ -10,10 +10,6 @@
 import { isObject, isFunction, get as objGet } from "lodash";
 import abstractField from "../abstractField";
 
-import Vue from 'vue';
-import { Radio } from 'element-ui';
-Vue.use(Radio);
-
 export default {
 	mixins: [abstractField],
 

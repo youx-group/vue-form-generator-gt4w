@@ -9,10 +9,6 @@ import abstractField from "../abstractField";
 import { defaults } from "lodash";
 import dateFieldHelper from "../../utils/dateFieldHelper";
 
-import Vue from 'vue';
-import { DatePicker } from 'element-ui';
-Vue.use(DatePicker);
-
 let inputFormat = "YYYY-MM-DD HH:mm:ss";
 
 export default {

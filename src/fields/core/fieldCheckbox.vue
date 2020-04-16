@@ -5,10 +5,6 @@
 <script>
 import abstractField from "../abstractField";
 
-import Vue from 'vue';
-import { Checkbox } from 'element-ui';
-Vue.use(Checkbox);
-
 export default {
 	mixins: [abstractField]
 };

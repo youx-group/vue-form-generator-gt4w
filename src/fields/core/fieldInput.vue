@@ -46,10 +46,6 @@ import abstractField from "../abstractField";
 import { debounce, get as objGet, isFunction, isNumber } from "lodash";
 import fecha from "fecha";
 
-import Vue from 'vue';
-import { Input } from 'element-ui';
-Vue.use(Input);
-
 const DATETIME_FORMATS = {
 	date: "YYYY-MM-DD",
 	datetime: "YYYY-MM-DD HH:mm:ss",

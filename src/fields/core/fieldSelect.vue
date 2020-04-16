@@ -12,12 +12,6 @@
 import { isObject, isNil, find } from "lodash";
 import abstractField from "../abstractField";
 
-import 'element-ui/lib/theme-chalk/index.css';
-import Vue from 'vue';
-import { Select, Option } from 'element-ui';
-Vue.use(Select);
-Vue.use(Option);
-
 export default {
 	mixins: [abstractField],
 
