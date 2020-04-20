@@ -59,8 +59,6 @@ export default {
 
 			set(newValue) {
 				let oldValue = this.value;
-				newValue = this.formatValueToModel(newValue);
-
 				if (isFunction(newValue)) {
 					newValue(newValue, oldValue);
 				} else {
@@ -222,6 +220,7 @@ export default {
 		},
 
 		formatValueToModel(value) {
+			console.log('formatValueToModel abstract', value);
 			return value;
 		}
 	}
