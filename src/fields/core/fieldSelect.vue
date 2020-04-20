@@ -1,11 +1,10 @@
 <template lang="pug">
 	select.form-control(v-model="value", :disabled="disabled", :name="schema.inputName", :id="getFieldID(schema)", :class="schema.fieldClasses", v-attributes="'input'")
 		option(v-if="!selectOptions.hideNoneSelectedText", :disabled="schema.required", :value="null") {{ selectOptions.noneSelectedText || "&lt;Nothing selected&gt;" }}
-
 		template(v-for="item in items")
 			optgroup(v-if="item.group", :label="getGroupName(item)")
-				option(v-if="item.ops", v-for="i in item.ops", :value="getItemValue(i)") {{ getItemName(i) }}
-
+				option(v-if="item.ops", v-for="i in item.ops", :value="getItemValue(i)") {{ getItemName(i) }}	
+	
 			option(v-if="!item.group", :value="getItemValue(item)") {{ getItemName(item) }}
 </template>
 
@@ -133,5 +132,10 @@ export default {
 </script>
 
 
-<style lang="sass">
+<style lang="scss">
+.vue-form-generator {
+	.sel {
+		width: 100%;
+	}
+}
 </style>

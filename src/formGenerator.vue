@@ -1,14 +1,18 @@
 <template lang="pug">
 div.vue-form-generator(v-if='schema != null')
 	fieldset(v-if="schema.fields", :is='tag')
-		template(v-for='field in fields')
-			form-group(v-if='fieldVisible(field)', :vfg="vfg", :field="field", :errors="errors", :model="model", :options="options", @validated="onFieldValidated", @model-updated="onModelUpdated")
+		div.flex
+			template(v-for='(field, index) in fields')
+				el-col(:span="field.column ? field.column : 12", :style="style(field, fields)")
+					form-group(v-if='fieldVisible(field)', :vfg="vfg", :field="field", :errors="errors", :model="model", :options="options", @validated="onFieldValidated", @model-updated="onModelUpdated")
 
 	template(v-for='group in groups')
 		fieldset(:is='tag', :class='getFieldRowClasses(group)')
 			legend(v-if='group.legend') {{ group.legend }}
-			template(v-for='field in group.fields')
-				form-group(v-if='fieldVisible(field)', :vfg="vfg", :field="field", :errors="errors", :model="model", :options="options", @validated="onFieldValidated", @model-updated="onModelUpdated")
+			div.flex
+				template(v-for='field in group.fields')
+					el-col(:span="field.column ? field.column : 12", :style="style(field, group.fields)")
+						form-group(v-if='fieldVisible(field)', :vfg="vfg", :field="field", :errors="errors", :model="model", :options="options", @validated="onFieldValidated", @model-updated="onModelUpdated")
 </template>
 
 <script>
@@ -85,7 +89,7 @@ export default {
 			}
 
 			return res;
-		}
+		},
 	},
 
 	watch: {
@@ -122,6 +126,10 @@ export default {
 	},
 
 	methods: {
+		style (field) {
+			return field.gutter ? `padding-right: ${field.gutter}px` : "padding-right: 40px";
+		},
+
 		// Get visible prop of field
 		fieldVisible(field) {
 			if (isFunction(field.visible)) return field.visible.call(this, this.model, field, this);
@@ -212,6 +220,12 @@ export default {
 .vue-form-generator {
 	* {
 		box-sizing: border-box;
+	}
+
+	.flex {
+		display: flex;
+		justify-content: flex-start;
+		flex-wrap: wrap;
 	}
 
 	.form-control {
