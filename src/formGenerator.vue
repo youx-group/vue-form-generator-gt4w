@@ -3,7 +3,7 @@ div.vue-form-generator(v-if='schema != null')
 	fieldset(v-if="schema.fields", :is='tag')
 		div.flex
 			template(v-for='(field, index) in fields')
-				el-col(:span="field.column ? field.column : 12", :style="style(field, fields)")
+				el-col(:span="field.column ? field.column : 12", :style="style(field)")
 					form-group(v-if='fieldVisible(field)', :vfg="vfg", :field="field", :errors="errors", :model="model", :options="options", @validated="onFieldValidated", @model-updated="onModelUpdated")
 
 	template(v-for='group in groups')
@@ -11,7 +11,7 @@ div.vue-form-generator(v-if='schema != null')
 			legend(v-if='group.legend') {{ group.legend }}
 			div.flex
 				template(v-for='field in group.fields')
-					el-col(:span="field.column ? field.column : 12", :style="style(field, group.fields)")
+					el-col(:span="field.column ? field.column : 12", :style="style(field)")
 						form-group(v-if='fieldVisible(field)', :vfg="vfg", :field="field", :errors="errors", :model="model", :options="options", @validated="onFieldValidated", @model-updated="onModelUpdated")
 </template>
 
@@ -126,6 +126,13 @@ export default {
 	},
 
 	methods: {
+		style (field) {
+			if(field.gutter) {
+				return `padding-right: ${field.gutter}px`;
+			}
+			return `padding-right: 40px`;
+		},
+
 		// Get visible prop of field
 		fieldVisible(field) {
 			if (isFunction(field.visible)) return field.visible.call(this, this.model, field, this);
