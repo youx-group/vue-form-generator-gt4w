@@ -1,11 +1,10 @@
 <template lang="pug">
-	select.form-control(v-model="value", :disabled="disabled", :name="schema.inputName", :id="getFieldID(schema)", :class="schema.fieldClasses", v-attributes="'input'")		el-select.sel(v-model="value", :disabled="disabled", :name="schema.inputName", :id="getFieldID(schema)", :class="schema.fieldClasses", v-attributes="'input'")
-		option(v-if="!selectOptions.hideNoneSelectedText", :disabled="schema.required", :value="null") {{ selectOptions.noneSelectedText || "&lt;Nothing selected&gt;" }}			//- el-option(v-if="!selectOptions.hideNoneSelectedText", :disabled="schema.required", :value="null") {{ selectOptions.noneSelectedText || "&lt;Nothing selected&gt;" }}
-		template(v-for="item in items")			template(v-for="item in items")
-			optgroup(v-if="item.group", :label="getGroupName(item)")				//- optgroup(v-if="item.group", :label="getGroupName(item)")
-				option(v-if="item.ops", v-for="i in item.ops", :value="getItemValue(i)") {{ getItemName(i) }}				//- 	el-option(v-if="item.ops", v-for="i in item.ops", :value="getItemValue(i)") {{ getItemName(i) }}
-
-			el-option(v-if="!item.group", :label="getItemName(item)" :value="getItemValue(item)") {{ getItemName(item) }}
+	select.form-control(v-model="value", :disabled="disabled", :name="schema.inputName", :id="getFieldID(schema)", :class="schema.fieldClasses", v-attributes="'input'")
+		option(v-if="!selectOptions.hideNoneSelectedText", :disabled="schema.required", :value="null") {{ selectOptions.noneSelectedText || "&lt;Nothing selected&gt;" }}
+		template(v-for="item in items")
+			optgroup(v-if="item.group", :label="getGroupName(item)")
+				option(v-if="item.ops", v-for="i in item.ops", :value="getItemValue(i)") {{ getItemName(i) }}	
+	
 			option(v-if="!item.group", :value="getItemValue(item)") {{ getItemName(item) }}
 </template>
 

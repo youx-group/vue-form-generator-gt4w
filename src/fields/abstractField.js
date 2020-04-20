@@ -220,7 +220,6 @@ export default {
 		},
 
 		formatValueToModel(value) {
-			console.log('formatValueToModel abstract', value);
 			return value;
 		}
 	}
