@@ -210,7 +210,7 @@ export default {
 		// Clear validation errors
 		clearValidationErrors() {
 			this.errors.splice(0);
-			console.log(this.$children);
+
 			forEach(this.$children, child => {
 				if(child.$children[0] && child.$children[0].clearValidationErrors) {
 					child.$children[0].clearValidationErrors();
