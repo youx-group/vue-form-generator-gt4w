@@ -17,8 +17,8 @@
 
 		<div v-if="field.hint" class="hint" v-html="fieldHint(field)"></div>
 
-		<div v-if="fieldErrors(field).length > 0" class="errors help-block">
-			<span v-for="(error, index) in fieldErrors(field)" :key="index" v-html="error"></span>
+		<div v-if="fieldErrors(field).length > 0" style="margin-top: -0.7em" class="errors help-block">
+			<span v-for="(error, index) in fieldErrors(field)" :key="index" style="font-size: 0.9em" v-html="error"></span>
 		</div>
 	</div>
 </template>
@@ -178,6 +178,7 @@ $errorColor: #f00;
 				background-repeat: no-repeat;
 				padding-left: 17px;
 				padding-top: 0px;
+				font-size: 0.9em;
 				margin-top: 0.2em;
 				font-weight: 600;
 			}
