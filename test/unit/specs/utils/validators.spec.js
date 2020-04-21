@@ -398,8 +398,8 @@ describe("Validators", () => {
 		};
 
 		it("should give the default error message", () => {
-			expect(v.number(null, field)[0]).to.be.equal("This field is required!");
-			expect(v.string("Ab", field)[0]).to.be.equal("The length of text is too small! Current: 2, Minimum: 5");
+			expect(v.number(null, field)[0]).to.be.equal("O campo é obrigatório!");
+			expect(v.string("Ab", field)[0]).to.be.equal("O tamanho do texto é muito pequeno! Atual: 2, Mínimo: 5");
 		});
 
 		it("should give the localized error message", () => {
@@ -429,7 +429,7 @@ describe("Validators", () => {
 		});
 
 		it("should give the default error message", () => {
-			expect(locNumber(30, field)[0]).to.be.equal("The number is too big! Maximum: 10");
+			expect(locNumber(30, field)[0]).to.be.equal("O número é muito grande! Máximo: 10");
 		});
 	});
 });

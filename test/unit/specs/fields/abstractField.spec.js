@@ -392,7 +392,7 @@ describe("abstractField.vue", () => {
 
 			expect(res).to.be.an.instanceof(Array);
 			expect(res.length).to.be.equal(1);
-			expect(res[0]).to.be.equal("The length of text is too small! Current: 2, Minimum: 3");
+			expect(res[0]).to.be.equal("O tamanho do texto é muito pequeno! Atual: 2, Mínimo: 3");
 
 			expect(onValidated.callCount).to.be.equal(1);
 			expect(onValidated.calledWith(false, field.errors, field)).to.be.true;
