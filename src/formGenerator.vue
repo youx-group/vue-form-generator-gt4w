@@ -11,7 +11,7 @@ div.vue-form-generator(v-if='schema != null')
 			legend(v-if='group.legend') {{ group.legend }}
 			div.flex
 				template(v-for='field in group.fields')
-					el-col(:span="field.column ? field.column : 12", :style="style(field)")
+					el-col(v-if='fieldVisible(field)' :span="field.column ? field.column : 12", :style="style(field)")
 						form-group(v-if='fieldVisible(field)', :vfg="vfg", :field="field", :errors="errors", :model="model", :options="options", @validated="onFieldValidated", @model-updated="onModelUpdated")
 </template>
 
@@ -176,9 +176,9 @@ export default {
 			let results = [];
 
 			forEach(this.$children, child => {
-				if (isFunction(child.validate)) {
-					fields.push(child.$refs.child); // keep track of validated children
-					results.push(child.validate(true));
+				if (isFunction(child.$children[0].validate)) {
+					fields.push(child.$children[0].$refs.child); // keep track of validated children
+					results.push(child.$children[0].validate(true));
 				}
 			});
 
@@ -210,9 +210,11 @@ export default {
 		// Clear validation errors
 		clearValidationErrors() {
 			this.errors.splice(0);
-
+			console.log(this.$children);
 			forEach(this.$children, child => {
-				child.clearValidationErrors();
+				if(child.$children[0] && child.$children[0].clearValidationErrors) {
+					child.$children[0].clearValidationErrors();
+				}
 			});
 		},
 	}
